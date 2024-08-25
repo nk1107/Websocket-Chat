@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+<div class="chat-container w-full max-w-md bg-white shadow-lg rounded-lg">
+    <div class="chat-header bg-blue-600 text-white p-4 rounded-t-lg">
+        <h1 class="text-xl font-bold">Chat Room</h1>
+    </div>
+
+    <div id="message-list"
+         class="chat-messages p-4 h-96 overflow-y-auto"
+         hx-ext="ws"
+         ws-connect="/ws">
+        <form id="form" ws-send class="chat-input p-4 bg-gray-100 rounded-b-lg flex">
+            <input type="text" name="message" placeholder="Type a message..." class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <button type="submit" class="ml-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Send</button>
+        </form>
+        <div id="chat_room" hx-swap-oob="beforeend">
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
